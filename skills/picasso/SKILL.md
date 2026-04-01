@@ -24,28 +24,7 @@ When the user says "make it premium" or "luxury feel," drop VISUAL_DENSITY to 2-
 
 ---
 
-## Step 0: The Design Interview
-
-Before writing any code or making any design decisions, understand what the user wants. If no `.picasso.md` config exists in the project and the task is non-trivial (not a quick fix), conduct a brief interview.
-
-**Ask these questions conversationally (not as a form):**
-
-1. **What are we doing?** New build, redesign, polish, or targeted fix?
-2. **Who is this for?** The audience determines the aesthetic.
-3. **What's the vibe?** Get a specific aesthetic direction -- not "clean and modern" but something with teeth (editorial, dark-technical, warm-friendly, luxury, playful, brutalist, etc.). Ask for inspiration URLs.
-4. **What matters most?** Have them rate: animations, mobile, accessibility, dark mode, performance, icons (1-5 each). This sets DESIGN_VARIANCE, MOTION_INTENSITY, and VISUAL_DENSITY.
-5. **Any constraints?** Existing design system, brand colors, fonts, framework requirements.
-
-**After the interview:**
-- Summarize back to confirm understanding
-- Generate `.picasso.md` with their preferences
-- Announce the plan and wait for confirmation before starting
-
-**Skip the interview when:** the user gives a specific command (`/audit`, `/polish`), says "just do it", or `.picasso.md` already exists.
-
----
-
-## Step 0.5: Read the Right References
+## Step 0: Read the Right References
 
 Before writing any code, read the reference files relevant to the task. Each covers a domain in depth with rules, examples, and anti-patterns. Load only what you need.
 
@@ -63,6 +42,30 @@ Before writing any code, read the reference files relevant to the task. Each cov
 | `references/design-system.md` | Generating DESIGN.md files, theming, systematic tokens |
 | `references/generative-art.md` | Algorithmic art, p5.js, seeded randomness, flow fields |
 | `references/component-patterns.md` | Standard component naming, taxonomy, and state patterns |
+
+---
+
+## Step 0.5: Anti-Slop Gate (MANDATORY — before ANY code)
+
+This step is non-negotiable. It takes 30 seconds and prevents hours of rework.
+
+1. **Read `references/anti-patterns.md`** — specifically the AI Slop Fingerprint section and Professional Alternatives table. Actually read it, don't skip.
+2. **Write out your commitments** — before touching code, declare:
+   - Font: [exact name, not a banned default]
+   - Layout strategy: [specific — not "centered everything"]
+   - Accent color: [exact value in OKLCH — not Tailwind default indigo]
+   - What makes this unforgettable: [one specific, memorable design choice]
+   - What you're explicitly rejecting: [the obvious/generic approach for this type of product]
+3. **Run the 3-Second Test** — picture the finished design. Would a designer say "AI-generated" in 3 seconds? If yes, change your commitments.
+4. **Check for slop combinations** — if 3+ of these are true, STOP and redesign:
+   - Centered vertical layout
+   - Default Tailwind accent color
+   - Uniform card grid
+   - Generic sans-serif font
+   - Same spacing everywhere
+   - Three equal-width items in a row
+
+If you skip this gate, the output WILL look AI-generated. There are no exceptions.
 
 ---
 
@@ -221,3 +224,5 @@ These optional directives can be used to steer design refinement:
 3. Match implementation complexity to vision. Maximalist designs need elaborate code. Minimalist designs need surgical precision. Both require the same level of care.
 4. Text is always a design element, never an afterthought.
 5. Every detail matters. The shadow radius, the letter spacing, the hover transition duration, the border color in dark mode. These are not small decisions.
+6. **The Anti-Slop Gate (Step 0.5) must be completed before writing any design code.** No exceptions. If you cannot articulate specific, non-default commitments for font, color, layout, and differentiation, you are not ready to design. Go back to the references.
+7. **Transformation means transformation.** When asked to redesign or improve a site, the result must be visually unrecognizable from the original. Changing CSS variables and swapping fonts is engineering, not design. A redesign changes the spatial logic, the visual hierarchy, the emotional register, and the layout structure. If someone could confuse the before and after, the redesign failed.
