@@ -1,0 +1,16 @@
+{
+  "metadata": {
+    "name": "picasso",
+    "version": "1.0.0",
+    "description": "The ultimate frontend design skill for AI coding agents",
+    "author": "viperr",
+    "pluginRoot": "./skills"
+  },
+  "plugins": [
+    {
+      "name": "picasso",
+      "source": "picasso",
+      "skills": ["./skills/picasso"]
+    }
+  ]
+}
