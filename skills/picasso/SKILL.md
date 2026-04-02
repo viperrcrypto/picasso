@@ -1,6 +1,6 @@
 ---
 name: picasso
-version: 1.5.0
+version: 1.6.0
 description: >
   The ultimate frontend design and UI engineering skill. Use this whenever the user asks to build, design, style, or improve any web interface, component, page, application, dashboard, landing page, artifact, poster, or visual output. Covers typography, color systems, spatial design, motion/animation, interaction design, responsive layouts, sound design, haptic feedback, icon systems, generative art, theming, React best practices, and DESIGN.md system generation. Also use when the user asks to audit, critique, polish, simplify, animate, or normalize a frontend. Triggers on any mention of "make it look good," "fix the design," "UI," "UX," "frontend," "component," "landing page," "dashboard," "artifact," "poster," "design system," "theme," "animation," "responsive," or any request to improve visual quality. Use this skill even when the user does not explicitly ask for design help but the task involves producing a visual interface.
 metadata:
