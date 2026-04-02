@@ -23,6 +23,8 @@ if (command === "help" || command === "--help" || command === "-h") {
     npx picasso-skill --skill-only Install skill only (no agent)
     npx picasso-skill --cursor     Install skill for Cursor
     npx picasso-skill --codex      Install skill for Codex
+    npx picasso-skill --openclaw   Install skill for OpenClaw (project skills/)
+    npx picasso-skill --openclaw -g Install skill for OpenClaw globally (~/.openclaw/skills/)
     npx picasso-skill --agents     Install to .agents/skills/
     npx picasso-skill --path DIR   Install to a custom directory
 
@@ -49,6 +51,15 @@ if (isGlobal) {
 } else if (args.includes("--codex")) {
   skillDir = join(home, ".codex", "skills", "picasso");
   agentDir = null;
+} else if (args.includes("--openclaw")) {
+  // OpenClaw: skills live in workspace skills/ dir or ~/.openclaw/skills/
+  const openclawGlobal = args.includes("--global") || args.includes("-g");
+  if (openclawGlobal) {
+    skillDir = join(home, ".openclaw", "skills", "picasso");
+  } else {
+    skillDir = join(process.cwd(), "skills", "picasso");
+  }
+  agentDir = null; // OpenClaw uses SOUL.md, not agents/
 } else if (args.includes("--agents")) {
   skillDir = join(process.cwd(), ".agents", "skills", "picasso");
   agentDir = null;
