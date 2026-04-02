@@ -1,6 +1,6 @@
 ---
 name: picasso
-version: 1.6.0
+version: 2.0.0
 description: >
   The ultimate frontend design and UI engineering skill. Use this whenever the user asks to build, design, style, or improve any web interface, component, page, application, dashboard, landing page, artifact, poster, or visual output. Covers typography, color systems, spatial design, motion/animation, interaction design, responsive layouts, sound design, haptic feedback, icon systems, generative art, theming, React best practices, and DESIGN.md system generation. Also use when the user asks to audit, critique, polish, simplify, animate, or normalize a frontend. Triggers on any mention of "make it look good," "fix the design," "UI," "UX," "frontend," "component," "landing page," "dashboard," "artifact," "poster," "design system," "theme," "animation," "responsive," or any request to improve visual quality. Use this skill even when the user does not explicitly ask for design help but the task involves producing a visual interface.
 metadata:
@@ -31,6 +31,20 @@ When the user says "make it premium" or "luxury feel," drop VISUAL_DENSITY to 2-
 
 ---
 
+## Quick Start (30 seconds)
+
+New to Picasso? Here's the minimum viable workflow:
+
+1. **Pick a font** that isn't Inter, Roboto, or Arial. Try: Satoshi, Cabinet Grotesk, Outfit, General Sans, Clash Display.
+2. **Pick a color** in OKLCH. Not Tailwind's default indigo. Try: `oklch(0.65 0.25 25)` (warm red), `oklch(0.55 0.20 160)` (teal), `oklch(0.60 0.22 300)` (violet).
+3. **Tint your grays** toward your accent hue. Never use pure `#808080` or `#000`.
+4. **Break the center.** Left-align content. Use asymmetric grids (2:1, 3:2). Only center heroes and CTAs.
+5. **Read `references/anti-patterns.md`** before writing any code. It's the most important file.
+
+Then follow the full workflow below. Skip nothing.
+
+---
+
 ## Step 0: Read the Right References
 
 Before writing any code, read the reference files relevant to the task. Each covers a domain in depth with rules, examples, and anti-patterns. Load only what you need.
@@ -50,6 +64,16 @@ Before writing any code, read the reference files relevant to the task. Each cov
 | `references/design-system.md` | Generating DESIGN.md files, theming, systematic tokens |
 | `references/generative-art.md` | Algorithmic art, p5.js, seeded randomness, flow fields |
 | `references/component-patterns.md` | Standard component naming, taxonomy, and state patterns |
+| `references/navigation-patterns.md` | Breadcrumbs, sidebar, tabs, bottom bar, mega menus, skip links |
+| `references/tables-and-forms.md` | Sortable tables, inline editing, multi-step forms, validation |
+| `references/loading-and-states.md` | Skeletons, spinners, empty states, error boundaries, offline |
+| `references/dark-mode.md` | Preference hierarchy, surface elevation, transitions, testing |
+| `references/images-and-media.md` | Format selection, responsive images, favicons, OG images |
+| `references/micro-interactions.md` | Scroll animations, page transitions, gestures, magnetic effects |
+| `references/i18n-visual-patterns.md` | RTL, logical properties, text expansion, CJK, number formatting |
+| `references/brand-and-identity.md` | Logo sizing, brand color usage, consistency, lockup variants |
+| `references/animation-performance.md` | Compositor-only props, will-change, layout thrashing, contain |
+| `references/code-typography.md` | Monospace fonts, syntax highlighting, code blocks, diff views |
 
 ---
 
@@ -62,7 +86,6 @@ This step is non-negotiable. It takes 30 seconds and prevents hours of rework.
    - Font: [exact name, not a banned default]
    - Layout strategy: [specific — not "centered everything"]
    - Accent color: [exact value in OKLCH — not Tailwind default indigo]
-   - Border-radius strategy: [at least 3 distinct values — buttons, cards, modals, tags — never one radius for everything]
    - What makes this unforgettable: [one specific, memorable design choice]
    - What you're explicitly rejecting: [the obvious/generic approach for this type of product]
 3. **Run the 3-Second Test** — picture the finished design. Would a designer say "AI-generated" in 3 seconds? If yes, change your commitments.
@@ -74,7 +97,7 @@ This step is non-negotiable. It takes 30 seconds and prevents hours of rework.
    - Same spacing everywhere
    - Three equal-width items in a row
 
-If you skip this gate, the output WILL look AI-generated. There are no exceptions.
+**HALT CONDITION:** If you cannot fill out the commitments above with specific, non-default values, you MUST NOT proceed to Step 1. Go back to the references. Read anti-patterns.md. Try again. There is no "just do it" bypass for this step. The gate exists because without it, every output converges to the same generic AI aesthetic. This is not optional. No code until commitments are written.
 
 ---
 
