@@ -1,6 +1,6 @@
 {
   "name": "picasso-skill",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "The ultimate AI design skill for producing distinctive, production-grade frontend interfaces",
   "bin": {
     "picasso-skill": "./bin/install.mjs"

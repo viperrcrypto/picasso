@@ -217,6 +217,26 @@ These optional directives can be used to steer design refinement:
 
 ---
 
+## Gotchas (Real Failure Points)
+
+These are not best practices. These are things that actually break in production and that AI agents get wrong repeatedly. Each one has burned real time.
+
+1. **Font loading race condition.** Google Fonts `@import` in CSS blocks rendering. The page flashes in the system font, then shifts when the custom font loads. Fix: use `<link rel="preload" as="font">` in the `<head>`, add `font-display: swap`, and always declare a fallback stack with similar metrics. If you skip this, your type scale is wrong for the first 500ms.
+
+2. **Dark mode contrast passes WCAG but is unreadable.** OKLCH `0.55 0.02 230` on `0.11 0.02 230` passes the 4.5:1 ratio check but looks washed out on cheap laptop screens. Always test with a screenshot on an actual dark background, not just the contrast calculator. Text below `0.60` lightness in OKLCH needs extra chroma or a bump to `0.65+`.
+
+3. **`transition: all` causes invisible layout jank.** It transitions `width`, `height`, `padding` -- properties that trigger reflow. The page looks fine at 60fps on your M-series Mac but stutters on a 2019 Chromebook. Always specify exact properties: `transition: opacity 0.2s, transform 0.3s`.
+
+4. **Staggered animations fire on every re-render.** CSS `animation-delay` on child elements replays every time React re-renders the parent. Either use `animation-fill-mode: both` with a one-shot class that gets removed, or gate the animation behind a `data-entered` attribute set once on mount.
+
+5. **Responsive "works at breakpoints" but breaks between them.** Testing at 375px and 768px looks fine, but at 520px the layout collapses because you used fixed `grid-template-columns: repeat(2, 1fr)` instead of `repeat(auto-fill, minmax(280px, 1fr))`. Always test at 480px and 600px too -- these are the kill zones.
+
+6. **Tailwind class strings over 200 characters.** Once a class string hits 200+ characters the component is unmaintainable. Extract to a CSS class with `@apply`, or better yet, use a `cn()` utility with conditional objects. This isn't a style preference -- it's a readability threshold.
+
+7. **Icon SVGs without `aria-hidden="true"`.** Every inline SVG icon announces itself to screen readers as "image" with no label. Decorative icons need `aria-hidden="true"`. Icons that ARE the only content (icon-only buttons) need `aria-label` on the button instead.
+
+---
+
 ## The Non-Negotiables
 
 1. No design should ever look like "AI made this." No purple gradients on white. No Inter font. No centered everything. No cards nested in cards. No gray text on colored backgrounds.

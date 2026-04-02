@@ -496,6 +496,8 @@ When the user invokes these commands, execute the corresponding workflow:
 | `/design-system-sync` | Detect and fix drift between DESIGN.md and code |
 | `/preset <name>` | Apply a curated community design preset |
 | `/godmode` | The ultimate command: interview + audit + score + roast + fix everything + before/after report |
+| `/quick-audit` | 5-minute fast audit: font, color, spacing, a11y, anti-slop — skip the deep dive |
+| `/autorefine` | Binary evaluation loop: define 6 criteria, mutate one thing at a time, iterate to 95%+ pass rate |
 
 ## /godmode -- The Ultimate Design Transformation
 
@@ -1042,6 +1044,78 @@ failed.forEach(a => console.log('  FAIL: ' + a.id + ' - ' + a.title));
 ```
 
 Combine results from all three tools, deduplicate overlapping findings, and report with severity levels.
+
+## /quick-audit -- 5-Minute Fast Audit
+
+When time is short or you need a triage before committing to a full audit. Takes 5 minutes, not 30.
+
+Check exactly these 6 things and report pass/fail for each:
+
+1. **Font** -- Is it a banned default (Inter, Roboto, Arial, system-ui)? → FAIL/PASS
+2. **Color** -- Are neutrals pure gray (#808080, #ccc) or tinted? → FAIL/PASS
+3. **Layout** -- Is everything centered on one axis with no spatial variation? → FAIL/PASS
+4. **Spacing** -- Is spacing uniform everywhere or does it follow gestalt grouping? → FAIL/PASS
+5. **Accessibility** -- Does `outline: none` exist without `:focus-visible` replacement? → FAIL/PASS
+6. **Anti-Slop** -- Do 3+ AI-slop fingerprints appear simultaneously? → FAIL/PASS
+
+Output format:
+```
+## Quick Audit: [project name]
+
+Font:          PASS ✓  (Cabinet Grotesk + DM Sans)
+Color:         FAIL ✗  (pure #808080 in 4 places)
+Layout:        PASS ✓  (asymmetric grid with primary card dominant)
+Spacing:       FAIL ✗  (uniform 32px between all sections)
+Accessibility: PASS ✓  (focus-visible defined globally)
+Anti-Slop:     FAIL ✗  (4 fingerprints: centered layout + uniform cards + indigo accent + same spacing)
+
+Result: 3/6 — Needs work. Start with color and spacing.
+```
+
+## /autorefine -- Binary Evaluation Loop
+
+Iterative improvement using binary (pass/fail) criteria. Inspired by SkillForge's autoresearch pattern that improved one skill from 56% to 92%.
+
+### How It Works
+
+1. **Define 6 binary criteria** (exactly 6 -- fewer is insufficient signal, more is over-optimization):
+   ```
+   1. Typography: Non-default font used? (yes/no)
+   2. Color: OKLCH or tinted neutrals? (yes/no)
+   3. Spacing: Follows 4px scale with gestalt grouping? (yes/no)
+   4. Anti-slop: Fewer than 3 slop fingerprints? (yes/no)
+   5. Motion: prefers-reduced-motion respected? (yes/no)
+   6. Accessibility: No axe-core critical violations? (yes/no)
+   ```
+
+2. **Run baseline evaluation** -- check all 6 criteria against current state. Report pass rate (e.g., 3/6 = 50%).
+
+3. **Mutate one thing at a time.** Pick the highest-impact failing criterion. Make the smallest change that flips it from FAIL to PASS. Do NOT change multiple things simultaneously -- you need to know what worked.
+
+4. **Re-evaluate all 6 criteria** after each mutation. Sometimes fixing one thing breaks another.
+
+5. **Iterate until 95%+ pass rate** (at least 6/6) across 3 consecutive evaluations. If a criterion keeps flipping between PASS and FAIL, the fix is unstable -- investigate root cause.
+
+6. **Stop after 8 mutations maximum.** If you haven't hit 95% by then, the remaining issues are structural and need a `/redesign`, not incremental fixes.
+
+### Output format per iteration:
+```
+## Autorefine: Iteration 3
+
+Mutation: Replaced pure grays with blue-tinted OKLCH neutrals in globals.css
+
+  Typography:    PASS ✓
+  Color:         PASS ✓  ← flipped from FAIL
+  Spacing:       PASS ✓
+  Anti-slop:     PASS ✓
+  Motion:        FAIL ✗
+  Accessibility: PASS ✓
+
+Pass rate: 5/6 (83%) — up from 67%
+Next: Add prefers-reduced-motion guard to animations
+```
+
+---
 
 ## Rules
 
