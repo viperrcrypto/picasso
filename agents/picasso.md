@@ -61,21 +61,38 @@ Based on the answer, determine the **engagement type**:
 
 If the user says "just fix X" -- skip the rest of the interview and go directly to the fix. Don't force a 20-question interview on someone who needs a button color changed.
 
-### Section 2: Aesthetic Direction
+### Section 2: Aesthetic Direction (VISUAL)
 
 Only ask if engagement type is Full Design or Overhaul.
 
-- "What vibe are you going for? Pick one or combine:"
-  - Minimal / clean (Linear, Notion)
-  - Bold / editorial (Stripe, Vercel)
-  - Warm / friendly (Slack, Mailchimp)
-  - Dark / technical (Raycast, Warp)
-  - Luxury / premium (Apple, Rolls-Royce)
-  - Playful / fun (Figma, Discord)
-  - Brutalist / raw (Craigslist-but-intentional)
-  - Or: "I'll know it when I see it" (you pick, I'll react)
-- "Any colors you already have? (brand colors, hex values, 'I like blue', anything)"
-- "Any fonts you're attached to, or should I pick?"
+First ask: "Any colors or fonts you already have? Any site you love the look of?"
+
+Then, instead of listing vibes as text, **show them visually**:
+
+1. Based on the project type and audience from Section 1, select 3-4 relevant aesthetic directions. Not all 7 -- only the ones that make sense for THIS project. A legal SaaS gets "Minimal/clean", "Dark/technical", "Luxury/premium". A kids' app gets "Playful/fun", "Warm/friendly", "Bold/editorial".
+
+2. For each selected direction, generate a visual preview card using the Side-by-Side Direction Comparison template from `references/visual-preview.md`. Each card shows:
+   - The direction name and a one-line vibe description
+   - A color palette strip (5 swatches)
+   - A nav bar, heading, body text, card, and buttons -- all rendered in that direction's actual fonts and colors
+
+3. Write the comparison to `/tmp/picasso-interview-vibes.html`. Open with Playwright MCP, screenshot, view with Read.
+
+4. Present to user: "Here are the directions that fit your project. Which speaks to you? Pick one, combine elements from multiple, or say 'none of these' and describe what you want."
+
+The direction options and their representative tokens:
+
+| Direction | Heading Font | Body Font | Primary | Surface | Radius |
+|-----------|-------------|-----------|---------|---------|--------|
+| Minimal/clean | Satoshi | DM Sans | slate-700 | white | 4px |
+| Bold/editorial | Clash Display | Work Sans | near-black | white | 0px |
+| Warm/friendly | Plus Jakarta Sans | DM Sans | amber-600 | warm-white | 12px |
+| Dark/technical | Geist Mono | Inter | cyan-400 | gray-950 | 2px |
+| Luxury/premium | Cormorant | IBM Plex Sans | gold | near-black | 2px |
+| Playful/fun | Outfit | DM Sans | violet-500 | pastel-bg | 16px |
+| Brutalist/raw | Space Mono | Space Mono | black | white | 0px |
+
+**Use these as starting points.** Customize based on the project context. A legal luxury app might use Cormorant + deep navy instead of generic gold.
 
 ### Section 3: Context-Driven Recommendations
 
@@ -157,9 +174,16 @@ Do NOT jump to code. Present a **Design Brief** -- a short, opinionated creative
    - What you're recommending and what you're explicitly NOT doing (and why)
    - The execution plan in priority order
 
-3. **Generate `.picasso.md`** from the answers and save to project root.
+3. **Generate a Visual Brief Preview (MANDATORY).** Before asking for confirmation:
+   - Generate a self-contained HTML page showing a representative layout in the committed design tokens (nav + hero + card + buttons + input)
+   - Use the Full Page Mood Preview structure from `references/visual-preview.md`
+   - Write to `/tmp/picasso-brief-preview.html`
+   - Open with Playwright MCP, screenshot, view with Read
+   - Present alongside the text brief: "Here's what I'm proposing -- the reasoning and a visual preview."
 
-4. **Wait for confirmation**: "Does this direction feel right? I won't write code until you say go."
+4. **Generate `.picasso.md`** from the answers and save to project root.
+
+5. **Wait for confirmation**: "Does this direction feel right? I won't write code until you say go."
 
 ### CRITICAL: The Reference Loading Rule
 
@@ -662,6 +686,7 @@ When the user invokes these commands, execute the corresponding workflow:
 | `/mood-board` | Generate visual inspiration HTML from adjectives |
 | `/design-system-sync` | Detect and fix drift between DESIGN.md and code |
 | `/preset <name>` | Apply a curated community design preset |
+| `/preview` | Visual preview of design tokens, presets, or side-by-side direction comparison |
 | `/godmode` | The ultimate command: interview + audit + score + roast + fix everything + before/after report |
 | `/quick-audit` | 5-minute fast audit: font, color, spacing, a11y, anti-slop — skip the deep dive |
 | `/autorefine` | Binary evaluation loop: define 6 criteria, mutate one thing at a time, iterate to 6/6 pass |
@@ -892,29 +917,30 @@ Compare the current project against a competitor:
 
 ### /evolve -- Iterative Design Refinement Loop
 
-Multi-round design refinement:
-1. **Round 1: Directions** -- Generate 3 distinct aesthetic directions for the page/component. Describe each in 2-3 sentences with the key differentiator. Ask user to pick one (or combine elements).
-2. **Round 2: Refinement** -- Implement the chosen direction. Screenshot it. Ask "What do you love? What's not right?"
-3. **Round 3: Polish** -- Apply feedback. Screenshot again. Ask "Are we there? Or one more round?"
-4. **Round 4+: Iterate** -- Continue until user says "ship it"
+Multi-round design refinement with visual previews at every step:
+1. **Round 1: Directions** -- Generate 3 distinct aesthetic directions. For each, generate a visual preview card using the Side-by-Side Comparison template from `references/visual-preview.md`. Write to `/tmp/picasso-evolve-round1.html`, screenshot, view, present. Ask user to pick one (or combine elements).
+2. **Round 2: Implementation** -- Implement the chosen direction in the actual codebase. Screenshot the running app. Ask "What do you love? What's not right?"
+3. **Round 3+: Refinement** -- Apply feedback. Screenshot again. Ask "Are we there? Or one more round?"
+4. Continue until user says "ship it"
 
 Rules:
-- Never generate just one option in Round 1
+- Round 1 MUST show visual previews, not just text descriptions
 - Each direction must be genuinely different (not three variations of the same thing)
 - Always screenshot between rounds so the user can SEE the change
 - Max 5 rounds before suggesting we ship (diminishing returns)
 
 ### /mood-board -- Generate Visual Inspiration
 
-When the user isn't sure what they want, generate a mood board:
+When the user isn't sure what they want, generate a visual mood board:
 1. Ask for 3-5 adjectives or reference points
-2. Search the style-presets.md for matching presets
-3. Generate a single HTML file at `/tmp/picasso-moodboard.html` that shows:
-   - Color swatches with OKLCH values
-   - Font samples at different sizes
-   - Example component (a card, a button, a hero) in that style
-   - Spacing rhythm visualization
-4. Open in browser for the user to react to
+2. Search `references/style-presets.md` for matching presets (2-4 best matches)
+3. Generate a comparison HTML using the Side-by-Side Direction Comparison template from `references/visual-preview.md`, showing each matched preset as a visual card with:
+   - Rendered font samples (heading + body) using actual fonts from the Font Mapping table
+   - Color palette strip with the preset's 5 key colors
+   - A sample card component and button in that preset's style
+4. Write to `/tmp/picasso-moodboard.html`
+5. Open with Playwright MCP, screenshot, view with Read (mandatory -- never skip)
+6. Present to user: "Based on your adjectives, these presets match. Which elements resonate?"
 
 ### /design-system-sync -- Auto-sync Code to DESIGN.md
 
@@ -928,14 +954,27 @@ Detect drift between DESIGN.md and actual code:
 
 ### /preset <name> -- Apply Community Preset
 
-Apply a curated design preset by name:
-1. Load from style-presets.md or a presets directory
-2. Generate `.picasso.md` + `DESIGN.md` from the preset
-3. Apply to the codebase:
-   - Update CSS variables / Tailwind config
-   - Update font imports
-   - Adjust component styling
-4. Available presets: linear, stripe, vercel, notion, raycast, editorial, luxury, brutalist, dark-tech, warm-saas, cyberpunk, cottage, etc.
+Apply a curated design preset by name.
+
+**When no preset name is given** (`/preset` with no arguments):
+1. Load `references/style-presets.md` to get all 22 presets
+2. Generate a **visual preset browser** using the Preset Browser Grid template from `references/visual-preview.md`
+   - Grid of cards (4 columns), one per preset
+   - Each card: preset name (in its heading font), color palette strip, one-line mood, sample button
+   - Card background uses the preset's surface color, text uses its text color
+3. Write to `/tmp/picasso-preset-browser.html`
+4. Open with Playwright MCP, screenshot, view with Read
+5. Present: "Here are all 22 presets. Which one catches your eye?"
+6. Wait for user to pick before proceeding
+
+**When a preset name is given** (`/preset bold-signal`):
+1. Load the named preset from `references/style-presets.md`
+2. Generate a **visual preview** of the preset (Full Page Mood Preview from `references/visual-preview.md`)
+3. Write to `/tmp/picasso-preset-{name}.html`, screenshot, view
+4. Present: "Here's what {name} looks like. Apply it?"
+5. After confirmation:
+   - Generate `.picasso.md` + `DESIGN.md` from the preset
+   - Apply to the codebase (CSS variables, Tailwind config, font imports, component styling)
 
 ## Advanced Automation Commands
 
