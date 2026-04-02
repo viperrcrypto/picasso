@@ -85,7 +85,7 @@ Quick yes/no questions:
 These questions force intentional differentiation. Do NOT skip them.
 
 - "What font will you use? (Not Inter, Roboto, or Arial — pick something with character)"
-- "What's your primary color? Give me a hex, OKLCH, or describe it. (Not Tailwind's default indigo/violet)"
+- "What's your primary color? Give me a hex, OKLCH, or describe it. (Not Tailwind's default indigo/violet/purple — these are the most overused AI-generated colors)"
 - "Name ONE specific design choice that will make this look different from typical SaaS/dashboard/landing pages."
 - "What's your layout strategy? (Left-aligned asymmetric, bento grid, split-screen, editorial — NOT centered-everything)"
 - "What aesthetic are you explicitly REJECTING?" (This forces awareness of what NOT to do)
@@ -140,12 +140,14 @@ Before generating ANY design code, write out your specific commitments. Not vagu
 ```
 ANTI-SLOP COMMITMENTS:
 - Font: [exact font name, NOT Inter/Roboto/Arial]
-- Layout: [specific structure — NOT "centered hero + 3 equal cards"]
-- Color accent: [exact OKLCH value — NOT bg-indigo-500 or #5B8DEF]
+- Layout: [specific structure — NOT "centered hero + 3 equal cards" or "gradient hero card + plain cards"]
+- Color accent: [exact value — NOT indigo/violet/purple family. NOT bg-indigo-500, bg-violet-500, or any from-indigo-to-violet gradient]
 - Neutrals: [tinted toward which hue?]
-- What makes this UNFORGETTABLE: [one specific visual choice someone will remember]
+- What makes this UNFORGETTABLE: [one specific visual choice — NOT gradients, colored borders, dark sidebar, or icon badges]
 - Spatial logic: [where is density high? where is it low? what breaks the grid?]
 - Border radius philosophy: [sharp/professional/friendly/playful — with px values]
+- Domain competitors studied: [list 2-3 real products in the same industry]
+- What I will NOT do: [list 3 specific AI patterns I will avoid for this project]
 ```
 
 If you cannot fill this out with specific, non-default values, you are not ready to design. Go back to the references.
@@ -154,11 +156,26 @@ If you cannot fill this out with specific, non-default values, you are not ready
 
 Before writing code, mentally picture the finished design. Ask yourself: "If someone saw a screenshot of this with no context, would they say 'AI-generated' in 3 seconds?" If yes, REDESIGN YOUR COMMITMENTS. The fingerprint is not any single choice — it is the combination of defaults.
 
-### Step 4: Verify No Slop Combinations
+### Step 4: Hard-Banned Pattern Check (BLOCKING)
+
+Before proceeding, verify NONE of these are in your plan. If ANY single one is present, STOP and redesign. These are not "3+ = bad" -- each one individually is banned:
+
+- [ ] Gradient background on stat cards, hero cards, or data surfaces (from-X to-Y on a card)
+- [ ] Indigo/violet/purple as primary color (unless user's existing brand explicitly uses it)
+- [ ] Colored left-border or top-border accents on cards (border-l-4 border-[color])
+- [ ] Different colored borders per card in a set (rainbow pattern)
+- [ ] Dark sidebar paired with gradient CTA button
+- [ ] Icons inside colored circle/rounded-square containers (bg-[color]-100 p-2 rounded-lg)
+- [ ] hover:-translate-y + shadow-lg on cards
+- [ ] Staggered entrance animations (animation-delay) on stat cards or data
+- [ ] Colored dots/badges per category in activity feeds
+- [ ] Converting hex to OKLCH and calling it a "redesign"
+
+### Step 5: Verify No Slop Combinations
 
 Check that your commitments don't trigger 3+ of these simultaneously:
 - [ ] Centered vertical layout with everything on one axis
-- [ ] Default Tailwind accent color (indigo/violet/purple family)
+- [ ] Default Tailwind accent color (any shade of indigo/violet/purple)
 - [ ] Uniform card grid (all same size, same radius, same shadow)
 - [ ] Generic sans-serif font (Inter, Roboto, system-ui)
 - [ ] Purple/blue glow blobs on dark backgrounds
@@ -168,6 +185,17 @@ Check that your commitments don't trigger 3+ of these simultaneously:
 - [ ] Fade-in-on-scroll applied identically to all elements
 
 If 3+ are checked, you MUST change your commitments until fewer than 3 remain.
+
+### Step 6: Competitor Research (MANDATORY for redesign/godmode)
+
+Before redesigning any app, you MUST identify 2-3 real competitors in the same domain and study their design patterns. For example:
+- Legal SaaS: Clio, PracticePanther, Smokeball, MyCase
+- Finance/Accounting: QuickBooks, Xero, FreshBooks, Wave
+- Project Management: Linear, Notion, Asana, Monday
+- CRM: HubSpot, Salesforce, Pipedrive
+- Healthcare: Epic, Athenahealth, DrChrono
+
+Your design should feel like it BELONGS in that category, not like a generic SaaS template with the app name swapped in. If you can't tell what industry the app serves from the design, you've failed.
 
 ---
 
@@ -239,15 +267,25 @@ Run through each category. For every finding, assign a severity and provide the 
 These are the telltale signs that make interfaces look AI-generated. Flag all of them:
 
 - [ ] Inter, Roboto, Arial, or system-ui as the primary font
-- [ ] Purple/blue gradient accents on white backgrounds
+- [ ] Purple/blue/indigo/violet gradient accents ANYWHERE (stat cards, hero sections, CTAs, sidebars)
+- [ ] Indigo/violet/purple as primary color (the Tailwind default trap)
 - [ ] Everything centered vertically and horizontally (the "vertical highway")
 - [ ] Uniform card grids with identical rounded corners
+- [ ] Gradient background on stat/data cards (colored bg with white text)
+- [ ] Colored left-border or top-border accents per card (rainbow pattern)
+- [ ] Dark sidebar + gradient CTA button combination
+- [ ] Icons inside colored circle/rounded-square containers
 - [ ] Pure black (#000) text or pure gray (#808080, #ccc) neutrals
 - [ ] Cards nested inside cards
 - [ ] Equal spacing everywhere with no visual grouping
 - [ ] `transition: all 0.3s` on elements
+- [ ] `hover:-translate-y + shadow-lg` on cards
+- [ ] Staggered entrance animations on static data (animation-delay on stat cards)
+- [ ] Colored dots/badges per category in activity feeds
 - [ ] Bounce or elastic easing
 - [ ] Generic stock imagery or placeholder content
+
+**IMPORTANT:** When FIXING slop, do not replace it with different slop. "Replace uniform cards with a gradient hero card" is replacing one AI pattern with another. The fix for uniform cards is to change SIZE or TYPOGRAPHY weight, not to add gradients or colored borders.
 
 ### 2.2 Typography (HIGH)
 
@@ -420,6 +458,11 @@ When invoked with `/polish`, `/redesign`, or when the user says "fix it":
 4. After fixing, re-run the audit to verify the score improved
 5. Show a before/after diff summary
 6. **Re-run the 3-Second Test** on screenshots. If it still looks AI-generated, you're not done.
+7. **Post-fix banned pattern scan.** After every fix category, grep your changes for HARD-BANNED patterns from anti-patterns.md. If any are found, revert that specific fix and try a different approach. Common traps:
+   - "Make one card stand out" does NOT mean "add a gradient background." It means change the size, position, or typography weight.
+   - "Add visual hierarchy" does NOT mean "add colored borders." It means adjust font size, weight, or spacing.
+   - "Make the sidebar more professional" does NOT mean "make it dark." It means improve spacing, typography, and active states.
+   - "Improve the color system" does NOT mean "switch to indigo/violet." It means ensure consistency and appropriate contrast.
 
 ### Common Auto-Fixes
 
@@ -615,6 +658,10 @@ Before/after report: /tmp/picasso-before-after.html
 - **Re-verify after every category.** Don't stack fixes without checking they work.
 - **The before/after report is mandatory.** The user must be able to see and share the transformation.
 - **If the before score is already 85+**, say so: "This is already in great shape. Here are the 3-4 things that would take it to 95+." Don't force a full pipeline on a polished project.
+- **MANDATORY POST-FIX SLOP SCAN.** After ALL fixes are applied, before presenting the final report, re-read anti-patterns.md HARD-BANNED PATTERNS section and grep your own changes for every banned pattern. If ANY are found, revert that specific change immediately. This is not optional.
+- **Restraint over decoration.** The goal of a redesign is NOT to add visual elements. It is to improve clarity, hierarchy, and usability. If a change adds visual complexity (gradients, colored borders, animations, icon badges), ask: "Would Stripe/Linear/Notion do this?" If no, don't do it.
+- **Research the domain first.** Before redesigning any app, identify 2-3 real competitors in the same industry and study their design. A legal app should look like legal software, not a generic SaaS dashboard.
+- **Prefer removal over addition.** When improving a UI, first look for things to REMOVE (unnecessary borders, extra colors, decorative elements) before adding anything new. The best design improvements are often subtractive.
 
 ## Creative Commands
 
@@ -1165,3 +1212,13 @@ Next: Add prefers-reduced-motion guard to animations
 8. Maximum text width: 65ch or 750px for body content
 9. Spacing must follow a consistent scale (4px base)
 10. Every design decision must be intentional, not default
+11. **NEVER use gradient backgrounds on stat cards, data cards, or hero cards.** Data surfaces must be flat and readable.
+12. **NEVER use indigo/violet/purple as default primary.** These are the most overused AI-generated colors. If the user hasn't specified a brand color, choose based on their industry (blue for finance, green for health, warm tones for consumer, slate for enterprise).
+13. **NEVER add colored left-border or top-border accents to cards.** This is the AI rainbow pattern.
+14. **NEVER pair a dark sidebar with a gradient CTA button.**
+15. **NEVER put icons inside colored circle/rounded-square containers** (the `bg-color-100 p-2 rounded-lg` pattern).
+16. **NEVER add hover:-translate-y + shadow-lg to cards.** Use subtle background color change only.
+17. **NEVER add staggered entrance animations to static data** (animation-delay on stat cards).
+18. **Prefer subtraction over addition.** The best redesign often removes visual noise rather than adding decoration.
+19. **Study real competitors first.** Before any redesign, identify what actual products in the same industry look like. Match their energy, not a generic SaaS template.
+20. **The restraint test:** Before writing any visual change, ask "Would Linear/Notion/Stripe do this?" If the answer is no, don't do it.

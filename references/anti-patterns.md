@@ -4,6 +4,34 @@ This is the most important reference file. These are the patterns that make AI-g
 
 ---
 
+## HARD-BANNED PATTERNS (NEVER USE -- NO EXCEPTIONS)
+
+These patterns are so strongly associated with AI-generated design that they must NEVER appear in any Picasso output. Not as a "starting point," not as "we'll iterate later," not in any context. If you catch yourself reaching for any of these, STOP and choose something else.
+
+### Banned Color Patterns
+- **Indigo/violet/purple gradient on stat cards or hero sections.** This is the #1 most recognizable AI design pattern in 2025-2026. `from-indigo-600 to-violet-500`, `from-purple-500 to-blue-500`, or any variation. NEVER.
+- **Colored left-border or top-border accents on cards.** The `border-l-4 border-purple-500` pattern on stat cards, feature cards, or list items is an AI fingerprint. Real dashboards use uniform subtle borders or no borders at all.
+- **Dark sidebar with gradient CTA button.** A `bg-slate-950` sidebar paired with a `from-indigo-500 to-violet-500` gradient "New [Thing]" button is the second most common AI dashboard pattern after gradient stat cards.
+- **Rainbow-coded card borders.** Giving each card in a row a different colored border (purple, amber, green, blue) is not "visual hierarchy" -- it's the AI rainbow pattern. Use one accent color sparingly.
+- **Indigo/violet as primary color for any project.** Unless the user's existing brand is specifically indigo/violet, never default to the indigo-500/violet-500 family. It's the Tailwind default trap.
+
+### Banned Layout Patterns  
+- **Gradient hero stat card that "pops" from a row of plain cards.** Making one stat card a full gradient (colored background, white text) while the others are plain white with borders. This is the most common AI "fix" for uniform card grids and it's just as recognizable.
+- **Colored dot/badge indicators on every list item by category.** Green dot for "create," blue dot for "update," red dot for "delete" in activity feeds. Real apps use subtle text differentiation, not a color-coded dot system.
+- **Gradient section headers.** Adding `from-muted/40 to-transparent` backgrounds to card headers is decorative noise that signals AI generation.
+- **Colored icon badges in rounded containers.** Putting icons inside colored circles/rounded squares (`bg-purple-100 p-2 rounded-lg`) next to section titles is a v0/bolt/lovable fingerprint.
+
+### Banned "Improvement" Patterns
+- **Converting hex to OKLCH as a "redesign."** Swapping `#2563eb` to `oklch(0.48 0.18 265)` changes nothing visually. It's a code quality improvement, not a design improvement. Never present token format changes as visual improvements.
+- **Adding hover translateY + shadow-lg to every card.** `hover:-translate-y-0.5 hover:shadow-lg transition-all` on cards is the universal AI "make it feel interactive" pattern.
+- **Staggered entrance animations on stat cards.** `animation-delay: 75ms, 150ms, 225ms, 300ms` on a row of cards. Real dashboards load content instantly; they don't choreograph card entrances.
+
+### Why These Are Banned
+
+These patterns emerged because AI models (including this one) were trained on thousands of examples of modern SaaS dashboards, and these are the statistical median of those examples. They represent the AVERAGE of all dashboards, which means they look like NO specific dashboard. A human designer makes opinionated choices. AI makes average choices. The patterns above are the most average choices possible.
+
+---
+
 ## The AI Slop Fingerprint
 
 Any 3 or more of these together = AI slop. Stop and redesign.
@@ -20,6 +48,12 @@ Any 3 or more of these together = AI slop. Stop and redesign.
 - Fade-in-on-scroll applied identically to every element
 - Feature icons from Lucide/Heroicons in tinted circles
 - "Trusted by 10,000+ teams" with grayed-out logos nobody recognizes
+- **Gradient stat/hero cards** (colored background with white text in a row of plain cards)
+- **Colored left/top border accents** on cards (border-l-4 with different colors per card)
+- **Dark sidebar + gradient CTA button** combination
+- **Rainbow-coded elements** (each item in a set gets a different color)
+- **Colored icon badges** (icons inside tinted rounded containers)
+- **hover:-translate-y + shadow-lg** on every interactive card
 
 **The test:** Show someone a screenshot without context. If they say "AI-generated" in 3 seconds, it fails. The fingerprint is not any single choice -- it is the combination of defaults that signals zero human judgment.
 
@@ -44,17 +78,20 @@ Any 3 or more of these together = AI slop. Stop and redesign.
 
 ## Color Anti-Patterns
 
-- **Purple gradient on white background.** The signature AI slop aesthetic. If your first instinct is purple-to-blue, stop.
-- **`bg-indigo-500`, `bg-violet-500`, `bg-purple-500` as primary.** The Tailwind default palette trap.
+- **Purple/indigo/violet gradient on ANY surface.** The signature AI slop aesthetic. If your first instinct is purple-to-blue, STOP. This includes stat cards, hero sections, CTAs, sidebars, and buttons. The entire indigo-to-violet spectrum is burned.
+- **`bg-indigo-500`, `bg-violet-500`, `bg-purple-500` as primary.** The Tailwind default palette trap. Also banned: `from-indigo-* to-violet-*` gradients.
+- **Gradient backgrounds on data cards/stat cards.** Stat cards should display data clearly. A gradient background with white text is decoration that hurts readability. Use flat backgrounds with colored text accents if needed.
+- **Different colored borders per card in a set.** If you have 4 stat cards, they should NOT each have a different colored left/top border. That's the AI rainbow pattern. Use consistent, subtle borders.
 - **Pure black text (#000000).** Use tinted near-black (e.g., `oklch(0.15 0.02 260)`).
 - **Pure gray (#808080, #cccccc).** Tint neutrals toward the palette hue.
 - **Gray text on colored backgrounds.** Low contrast, washed out. Use white or a very light tint.
 - **Full-saturation brand colors for large surfaces.** Reserve max chroma for small accents. Large areas need reduced saturation.
-- **Too many accent colors.** One primary, one secondary maximum.
+- **Too many accent colors.** One primary, one secondary maximum. A dashboard should have ONE accent color, not four.
 - **Using opacity instead of actual color values.** `opacity:0.5` creates inconsistent results. Define explicit tokens.
 - **No dark mode consideration.** Use CSS custom properties from the start.
 - **Gradient text without a solid fallback.** Breaks in selection, high contrast mode, some browsers.
 - **Rainbow or multi-stop gradients.** Two stops maximum. Four or more is a circus.
+- **"Professional" = dark sidebar.** A dark sidebar is not inherently more professional. It's become a cliche. Study what the user's ACTUAL competitors do. Most legal/accounting/business SaaS uses light sidebars (Clio, QuickBooks, Xero, PracticePanther).
 
 ---
 
@@ -168,17 +205,34 @@ The antidote is intentionality. Every choice -- font, color, spacing, layout, an
 | AI Default | Professional Alternative |
 |---|---|
 | Inter / Roboto | Satoshi, Cabinet Grotesk, Plus Jakarta Sans, Outfit, General Sans, Switzer |
-| Purple-to-blue gradient | Single brand hue + tinted neutrals (monochromatic palette) |
-| 3-column equal cards | Asymmetric grid with primary card dominant (2:1 or 3:2 split) |
+| Purple-to-blue gradient | Single brand hue + tinted neutrals (monochromatic palette). NO gradients on data surfaces. |
+| Gradient stat/hero card | Flat card with subtle text color accent. Data cards should be quiet -- let the numbers speak. Study Stripe Dashboard, Linear, or Notion for how to do stat cards without gradients. |
+| Colored border per card | Uniform subtle borders on all cards. ONE accent color for the most important metric only, applied to the VALUE text, not the card border/background. |
+| Dark sidebar + gradient CTA | Match the sidebar to the existing app theme. Light sidebar for business/legal/finance apps. CTA buttons use solid primary color, never gradients. |
+| 3-column equal cards | Asymmetric grid with primary card dominant (2:1 or 3:2 split) -- but NOT via gradient background. Dominance through size, position, or typography weight. |
 | Centered everything | Left-aligned content with intentional centering for heroes/CTAs only |
 | Uniform 8px radius | Context-appropriate: 0-2px marketing, 8-12px cards, 16-24px modals, 999px tags |
 | `0 4px 6px rgba(0,0,0,0.1)` | Elevation-based shadow scale with 3-4 distinct levels |
 | Hero > Cards > Testimonials > CTA | Split-screen, bento grid, horizontal scroll, text-as-hero, editorial layout |
-| Fade-in everything identically | Staggered entrance with varied timing, direction, and type per element |
+| Fade-in everything identically | No entrance animations on data. Static content loads statically. Animate only user-initiated transitions. |
 | "Scale without limits" | Specific claim with real metric: "Process 10k invoices in 3 minutes" |
-| `bg-indigo-500` accent | A hue reflecting the brand, not Tailwind's default palette |
-| Generic box icons in circles | Custom illustrations, product screenshots, or no icons at all |
+| `bg-indigo-500` accent | A hue reflecting the brand, not Tailwind's default palette. For business/legal: deep blue, forest green, warm brown, or slate -- NOT indigo/violet. |
+| Icons in colored circles | Icons inline with text at muted color. No tinted backgrounds on icon containers. |
+| hover:-translate-y + shadow-lg | Subtle background color change on hover (`hover:bg-muted`). No lifting, no shadow changes. |
 | "Trusted by 10,000+ teams" | Real customer logos with permission, or skip entirely |
 | Uniform section spacing | Varied density: spacious heroes, dense feature grids, breathing room at CTAs |
 | Same shadow on everything | Shadow hierarchy: none flat, subtle cards, medium dropdowns, heavy modals |
 | Stock laptop photos | Product screenshots, hand-drawn illustrations, or abstract geometric art |
+
+## The Restraint Principle
+
+The best professional SaaS designs (Linear, Notion, Stripe, Vercel) share one trait: **restraint**. They use:
+- ONE accent color, applied sparingly (a button, a selected state, a link)
+- Flat, borderless or very subtle bordered cards
+- No gradients on data surfaces
+- No colored icon badges
+- No entrance animations on static content
+- Mostly neutral palette with tiny pops of color
+- The SAME card style for all cards (not one "hero" and three "normal")
+
+The AI instinct is to ADD visual elements (gradients, colors, animations, borders, shadows). The professional instinct is to REMOVE them. When in doubt, make it quieter, not louder.
