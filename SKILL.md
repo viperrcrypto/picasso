@@ -62,6 +62,7 @@ This step is non-negotiable. It takes 30 seconds and prevents hours of rework.
    - Font: [exact name, not a banned default]
    - Layout strategy: [specific — not "centered everything"]
    - Accent color: [exact value in OKLCH — not Tailwind default indigo]
+   - Border-radius strategy: [at least 3 distinct values — buttons, cards, modals, tags — never one radius for everything]
    - What makes this unforgettable: [one specific, memorable design choice]
    - What you're explicitly rejecting: [the obvious/generic approach for this type of product]
 3. **Run the 3-Second Test** — picture the finished design. Would a designer say "AI-generated" in 3 seconds? If yes, change your commitments.

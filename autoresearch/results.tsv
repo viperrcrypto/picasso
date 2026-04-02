@@ -1,0 +1,8 @@
+experiment	prompt	c1_font	c2_oklch	c3_ai_detect	c4_asymmetric	c5_touch_44px	c6_reduced_motion	pass	fail	rate	timestamp
+baseline	saas-landing	PASS	PASS	PASS	PASS	PASS	PASS	6	0	100%	2026-04-01T17:15
+baseline	fintech-settings	PASS	PASS	FAIL	PASS	PASS	PASS	5	1	83.3%	2026-04-01T17:15
+baseline	pricing	PASS	PASS	PASS	PASS	PASS	PASS	6	0	100%	2026-04-01T17:15
+stress	saas-landing	PASS	PASS	PASS	PASS	PASS	PASS	6	0	100%	2026-04-01T17:19
+stress	fintech-settings	PASS	PASS	PASS	PASS	PASS	PASS	6	0	100%	2026-04-01T17:19
+stress	pricing	PASS	PASS	PASS	PASS	PASS	PASS	6	0	100%	2026-04-01T17:19
+mut1-border-radius	fintech-settings	PASS	PASS	PASS	PASS	PASS	PASS	6	0	100%	2026-04-01T17:26
