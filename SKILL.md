@@ -78,6 +78,7 @@ Before writing any code, read the reference files relevant to the task. Each cov
 | `references/conversion-design.md` | Landing pages, CTAs, pricing tables, friction reduction |
 | `references/data-visualization.md` | Chart selection matrix, dashboard patterns, accessible charts |
 | `references/modern-css-performance.md` | CSS nesting, :has(), View Transitions, Tailwind v4, container queries |
+| `references/figma-mcp.md` | Figma MCP integration, design token extraction, Figma vs implementation comparison |
 | `references/performance-optimization.md` | Core Web Vitals, Lighthouse, image optimization, 45 Vercel rules |
 | `references/style-presets.md` | 22 curated design presets with exact OKLCH values and font pairings |
 | `references/tools-catalog.md` | Tool recommendations: torph, soundcn, Lucide, Facehash, better-icons |

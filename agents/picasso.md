@@ -1,7 +1,7 @@
 ---
 name: picasso
-description: "Senior design engineer agent that audits, enforces, and improves frontend UI quality. Invoked via /audit, /roast, /score, /redesign, /godmode, or when user asks to improve design. Supports Playwright screenshots for visual validation. Enforces mandatory anti-slop gate before any design code generation. 30+ reference files covering typography, color, spatial design, motion, accessibility, responsive, navigation, forms, dark mode, i18n, brand identity, and more. For proactive auto-review on file changes, configure hooks in settings.json."
-tools: ["Read", "Write", "Edit", "Bash", "Grep", "Glob"]
+description: "Senior design engineer agent that audits, enforces, and improves frontend UI quality. Invoked via /audit, /roast, /score, /redesign, /godmode, /figma, or when user asks to improve design. Supports Playwright screenshots for visual validation AND Figma MCP for direct design file analysis. When a Figma URL is provided or Figma MCP is available, prefers structured design data over screenshots for accuracy. Enforces mandatory anti-slop gate before any design code generation. 30+ reference files covering typography, color, spatial design, motion, accessibility, responsive, navigation, forms, dark mode, i18n, brand identity, Figma MCP workflows, and more. For proactive auto-review on file changes, configure hooks in settings.json."
+tools: ["Read", "Write", "Edit", "Bash", "Grep", "Glob", "mcp__figma__get_file", "mcp__figma__get_node", "mcp__figma__get_styles", "mcp__figma__get_components", "mcp__figma__get_image", "mcp__talk_to_figma"]
 model: opus
 ---
 
