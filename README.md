@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  32 reference domains &bull; 13 slash commands + 22 agent behaviors &bull; 11,000+ lines of actionable design intelligence<br/>
+  33 reference domains &bull; 15 slash commands &bull; 19,000 lines of design intelligence<br/>
   Every interface looks like a senior design engineer spent days on it.
 </p>
 
@@ -36,7 +36,7 @@ Existing design skills are shallow. They tell you to "use good typography" witho
 
 ### Depth That No Other Skill Matches
 
-Picasso covers **32 specialized reference domains**, each with concrete rules, specific values, and ready-to-use code. This isn't a collection of vague principles -- it's an engineering specification for beautiful interfaces.
+Picasso covers **33 specialized reference domains**, each with concrete rules, specific values, and ready-to-use code. This isn't a collection of vague principles -- it's an engineering specification for beautiful interfaces.
 
 | Domain | What You Get |
 |---|---|
@@ -44,7 +44,7 @@ Picasso covers **32 specialized reference domains**, each with concrete rules, s
 | **Color & Contrast** | OKLCH-based palette construction, tinted neutrals (never pure gray), 60-30-10 rule, dark mode inversion rules, "alpha is a design smell" |
 | **Spatial Design** | 4px base spacing scale, Gestalt proximity ratios (2:1 minimum), Squint Test, asymmetric grid patterns, "cards are not required" |
 | **Motion & Animation** | Duration rule (100/200/300/500ms), only animate transform+opacity, exit = 75% of entrance, grid-template-rows for height, stagger caps |
-| **Interaction Design** | All 8 interactive states (default/hover/focus/active/disabled/loading/error/success), dropdown positioning (#1 bug fix), Popover API, undo > confirmation |
+| **UX Evaluation** | Nielsen's 10 heuristics as actionable checklist, Jobs to Be Done extraction from code, component state machines (8 states), prompt enhancement for vague requests |
 | **Responsive Design** | Input method detection (`@media pointer/hover`), safe areas, container queries, content-driven breakpoints, real device testing |
 | **Sensory Design** | soundcn (700+ CC0 sounds), web-haptics (4 presets + custom), multi-sensory integration patterns |
 | **React/Next.js** | Server Components by default, barrel import avoidance, RSC serialization minimization, React.cache() deduplication |
@@ -69,7 +69,7 @@ Picasso covers **32 specialized reference domains**, each with concrete rules, s
 | **Micro-Interactions** | IntersectionObserver scroll animations, View Transitions API, magnetic cursors, gesture detection (swipe/pinch), animation budget (max 3 concurrent) |
 | **i18n Visual Patterns** | Logical properties for RTL, text expansion by language (+35% German), CJK rendering, Noto font stacks, icon mirroring rules |
 | **Brand & Identity** | Logo sizing (min 24px), clear space rules, lockup variants, 60-30-10 brand color usage, when to bend brand rules |
-| **Animation Performance** | Compositor-only properties (transform + opacity only), will-change lifecycle, layout thrashing batching, `contain` property, GPU hints |
+| **Visual Preview** | Self-contained HTML preview generation, side-by-side direction comparison, preset browser grid, font URL mapping, screenshot protocol |
 | **Code Typography** | JetBrains Mono/Fira Code selection, syntax highlighting contrast (3:1 min), code block design, copy button UX, diff views, terminal styling |
 
 ### The AI-Slop Firewall
@@ -102,33 +102,32 @@ Picasso doesn't just describe tools -- it specifies exactly how to use them with
 
 ---
 
-## The Design Interview
+## Visual Discovery (Not a Questionnaire)
 
-When you first use Picasso on a project, it doesn't just start generating. It asks.
+Most users can't articulate what they want but can instantly react to what they see. So Picasso shows, not asks.
 
 ```
-Picasso: What are we building? New project, redesign, polish, or fixing specific issues?
-You:     New SaaS dashboard for a fintech startup
+1. CRAWL    Picasso silently reads your codebase, identifies the product
+            type, studies 2-3 real competitors in your space.
 
-Picasso: Who is this for?
-You:     Financial analysts, 30-50 age range, use Bloomberg terminals all day
+2. ASK      2-3 quick questions max: "What's the primary user action?"
+            "Any brand colors to keep?" "Site you love the look of?"
 
-Picasso: What's the vibe? Any sites you love the look of?
-You:     Dark, dense, like Linear meets Bloomberg. Here's a reference: linear.app
+3. SHOW     Generates 6-10 fast visual sample pages, each a different
+            design direction applied to YOUR app's actual structure.
+            Opens a gallery for you to browse.
 
-Picasso: Rate these 1-5:
-         Animations? Mobile? Accessibility? Dark mode? Performance?
-You:     Animations 3, Mobile 2, A11y 5, Dark mode YES, Perf 5
+4. REACT    You: "Like 3 and 7. Hate the dark ones. 7 is close but
+            the font is too playful."
 
-Picasso: Got it. Here's what I'm building:
-         → Dark-tech aesthetic inspired by Linear
-         → Dense layout (VISUAL_DENSITY: 8), subtle motion (MOTION_INTENSITY: 3)
-         → WCAG AAA accessibility, dark-first, performance-critical
-         → Generating .picasso.md and DESIGN.md now...
-         Sound good?
+5. NARROW   Generates 3-5 refined samples based on your reactions.
+            Each one more polished than round 1.
+
+6. CONFIRM  You pick a direction. Picasso generates .picasso.md and
+            begins implementation with your real content.
 ```
 
-The interview generates a `.picasso.md` config that persists your preferences across every future session. Run `/picasso` anytime to redo it.
+You never have to go look at design sites for inspiration. Picasso brings it to you. Your reactions reveal more preferences than any questionnaire.
 
 ---
 
@@ -170,19 +169,19 @@ A single 0-100 score, broken down by category. Track it over time.
 
 Typography:    ████████████░░░  12/15
 Color:         ████████████░░░  11/15
-Spacing:       ████████░░       8/10
-Accessibility: ████████████████ 16/20
-Motion:        ██████░░░░       6/10
-Responsive:    ████████░░       8/10
-Performance:   ██████░░░░       6/10
-Anti-Slop:     ██████░░░░       6/10
+Spacing:       ████████░░        8/10
+UX Heuristics: ████████████████ 16/20
+Motion:        ██████░░░░        6/10
+Responsive:    ████████░░        8/10
+Performance:   ██████░░░░        6/10
+Anti-Slop:     ██████░░░░        6/10
 
 Top fixes for +15 points:
-1. Add prefers-reduced-motion support (+4)
-2. Replace #000 with tinted near-black (+3)
-3. Add staggered entrance animation (+3)
-4. Set max-width on body text (+3)
-5. Replace outline:none with focus-visible (+2)
+1. Replace default primary color with industry-appropriate choice (+4)
+2. Set max-width on body text and increase to 16px (+3)
+3. Add prefers-reduced-motion support (+3)
+4. Replace outline:none with focus-visible (+3)
+5. Replace #000 with tinted near-black (+2)
 ```
 
 ### `/steal <url>` -- Extract Any Site's Design DNA
@@ -205,22 +204,22 @@ Generates a complete design system -- palette, fonts, spacing, motion, component
 
 ### `/evolve` -- Iterative Multi-Round Refinement
 
-Instead of generating once and hoping, Picasso proposes 3 distinct directions, lets you pick, then refines through multiple rounds:
+Proposes 3 directions as visual HTML previews, lets you pick, then implements and refines through multiple rounds with screenshots between each:
 
 ```
-Round 1: Here are 3 directions:
-  A) Minimal monochrome -- Geist font, black/white, sharp corners
-  B) Warm editorial -- Instrument Serif headers, terracotta accent, soft radius
-  C) Dark technical -- JetBrains Mono accent, neon green, dense layout
+Round 1: [generates 3 visual preview cards, screenshots them]
+         A) Counsel -- sage/teal, serif headers, 8px radius
+         B) Chambers -- dark, amber accent, monospace, 3px sharp
+         C) Parchment -- warm cream, terracotta, italic serif
 
-You: B, but darker
+You: B, but less extreme
 
-Round 2: [implements B with darker surfaces, screenshots]
+Round 2: [implements B with adjustments, screenshots running app]
          What do you love? What's not right?
 
 You: Love the typography. Cards need more breathing room.
 
-Round 3: [adjusts spacing, screenshots]
+Round 3: [adjusts spacing, screenshots again]
          Are we there?
 
 You: Ship it.
@@ -255,14 +254,11 @@ After any `/polish` or `/redesign`, auto-generates side-by-side screenshots show
 ### `/preset <name>` -- One-Command Aesthetic
 
 ```bash
-/preset linear     # Linear-inspired dark minimal
-/preset stripe     # Stripe-inspired gradient editorial
-/preset vercel     # Vercel-inspired black/white sharp
-/preset notion     # Notion-inspired warm readable
-/preset brutalist  # Raw, intentional, monospace
+/preset            # Visual browser grid of all 22 presets -- pick one
+/preset bold-signal  # Preview Bold Signal, then apply it
 ```
 
-Generates `.picasso.md` + `DESIGN.md` + updates your CSS variables in one command.
+Without args: generates a visual grid showing all 22 presets with swatches, fonts, and sample buttons. Pick visually. With a name: shows a full-page preview before applying. Generates `.picasso.md` + `DESIGN.md` + updates CSS variables.
 
 ---
 
@@ -274,10 +270,10 @@ We compared Picasso against every publicly available AI design skill as of April
 
 | Metric | Picasso | Anthropic frontend-design | Impeccable | Taste Skill | Generic skills |
 |---|---|---|---|---|---|
-| **Reference domains** | **32** | 1 | 7 | 1 | 1-3 |
-| **Total lines of guidance** | **11,000+** | ~120 | ~2,500 | ~200 | 50-300 |
+| **Reference domains** | **33** | 1 | 7 | 1 | 1-3 |
+| **Total lines of guidance** | **19,000** | ~120 | ~2,500 | ~200 | 50-300 |
 | **Anti-pattern rules** | **50+** | ~10 | ~30 | ~5 | 0-5 |
-| **Steering commands** | **35** | 0 | 20 | 0 | 0-3 |
+| **Slash commands** | **15** | 0 | 20 | 0 | 0-3 |
 | **ARIA patterns documented** | **12 widgets** | 0 | 0 | 0 | 0 |
 | **React performance rules** | **45 (Vercel)** | 0 | 0 | 0 | 0 |
 | **Chart/data viz guidance** | **Full matrix** | None | None | None | None |
@@ -391,7 +387,7 @@ Picasso ships as both a **skill** (knowledge base) and an **agent** (autonomous 
 | **When it runs** | When you ask for design help | On explicit commands (/audit, /roast, /godmode, etc.) |
 | **Can audit code** | Only when asked | Yes, with structured scoring |
 | **Can run axe-core** | No | Yes (via CLI) |
-| **Can screenshot pages** | No | Yes (via Playwright MCP) |
+| **Can screenshot pages** | No | Yes (via `npx playwright screenshot`) |
 | **Can auto-fix issues** | No | Yes (with pre-flight git/test checks) |
 | **Can enforce design system** | No | Yes (greps for token violations) |
 | **Enforces anti-slop gate** | Via SKILL.md instructions | Yes, mandatory before any code generation |
@@ -419,7 +415,9 @@ These have dedicated command files and can be invoked directly.
 | `/compete <url>` | Head-to-head design comparison against a competitor site |
 | `/before-after` | Visual side-by-side comparison after changes with HTML report |
 | `/preset <name>` | Apply a curated community design preset (linear, stripe, vercel, notion, etc.) |
-| `/variants` | Generate 2-3 distinct visual directions for A/B comparison with code previews |
+| `/variants` | Generate 2-3 distinct visual directions with side-by-side visual HTML previews |
+| `/preview` | Visual preview of design tokens, presets, or side-by-side direction comparison |
+| `/figma` | Figma MCP integration: extract design tokens, audit, compare Figma vs live |
 | `/backlog` | Create persistent design debt backlog with impact-priority scoring in `.picasso-backlog.md` |
 
 ### `/godmode` -- The Nuclear Option
@@ -447,25 +445,17 @@ These are defined in the Picasso agent and run as part of pipelines (e.g., `/god
 
 | Behavior | What It Does |
 |---|---|
-| `/picasso` | Run the design interview, generates `.picasso.md` |
-| `/audit` | Full technical audit across typography, color, spacing, a11y, motion, responsive, interaction |
-| `/critique` | UX-focused review: hierarchy, clarity, emotional resonance, user flow |
+| `/picasso` | Run the visual discovery process, generates `.picasso.md` |
+| `/audit` | Full technical audit across typography, color, spacing, UX heuristics, motion, responsive |
 | `/polish` | Auto-fix all audit findings with smallest safe changes |
 | `/redesign` | Full audit + aggressive fixes + re-audit to verify improvement |
-| `/simplify` | Strip unnecessary complexity: flatten nesting, reduce color count |
-| `/animate` | Add purposeful motion: staggered reveals, hover states, scroll-triggered animations |
-| `/bolder` | Amplify timid designs: increase contrast, enlarge type, strengthen hierarchy |
-| `/quieter` | Tone down aggressive designs: reduce saturation, soften shadows, increase whitespace |
-| `/normalize` | Align with design system: replace hardcoded values with tokens |
 | `/harden` | Add error handling, loading states, empty states, edge case handling |
-| `/theme` | Generate or apply a theme via DESIGN.md |
 | `/stitch` | Generate a complete DESIGN.md from the current codebase |
 | `/a11y` | Full accessibility audit: axe-core + pa11y + Lighthouse with JSON parsing |
 | `/perf` | Lighthouse performance audit with Core Web Vitals pass/fail thresholds |
 | `/visual-diff` | Screenshot desktop + mobile in light/dark mode, analyze visually |
 | `/consistency` | Multi-page consistency check across all routes |
-| `/lint-design` | Find hardcoded colors, spacing violations, font inconsistencies, z-index chaos |
-| `/mood-board` | Generate visual inspiration HTML from adjectives |
+| `/lint-design` | Find hardcoded colors, spacing violations, font inconsistencies |
 | `/design-system-sync` | Detect and fix drift between DESIGN.md and code |
 | `/install-hooks` | Generate git pre-commit hook for automated design checks |
 | `/ci-setup` | Generate GitHub Actions workflow for PR design review with scores |
@@ -475,38 +465,39 @@ These are defined in the Picasso agent and run as part of pipelines (e.g., `/god
 ## References
 
 ```
-references/                          # 32 files, 9,300+ lines
+references/                          # 33 files, 7,000 lines
   anti-patterns.md                   # 50+ banned patterns (THE MOST IMPORTANT FILE)
-  typography.md                      # Type systems, font pairing, scales, OpenType, vertical rhythm
-  color-and-contrast.md              # OKLCH, tinted neutrals, dark mode, 60-30-10, dangerous combos
+  typography.md                      # Type systems, font pairing, scales, vertical rhythm
+  color-and-contrast.md              # OKLCH, tinted neutrals, dark mode, 60-30-10
   spatial-design.md                  # 4px spacing scale, grids, hierarchy, Squint Test
-  depth-and-elevation.md             # Dual shadows, layering, shadow scale, z-index, hover patterns
-  motion-and-animation.md            # Duration rule, easing curves, staggering, text morphing
-  micro-interactions.md              # Scroll animations, View Transitions, gestures, magnetic cursors
-  animation-performance.md           # Compositor-only props, will-change, layout thrashing, contain
-  interaction-design.md              # 8 states, forms, focus, Popover API, dropdown positioning
-  navigation-patterns.md             # Breadcrumbs, sidebar, tabs, bottom bar, mega menus, skip links
-  tables-and-forms.md                # Sortable tables, inline editing, validation, multi-step forms
-  loading-and-states.md              # Skeletons, error boundaries, 5 empty state types, offline
-  responsive-design.md               # Input method detection, safe areas, container queries
-  dark-mode.md                       # Preference hierarchy, elevation, transitions, testing
-  images-and-media.md                # Format selection, srcset, favicons, OG images, video
-  brand-and-identity.md              # Logo sizing, brand color 60-30-10, lockup variants
-  i18n-visual-patterns.md            # RTL, logical properties, text expansion, CJK, Noto stacks
-  code-typography.md                 # Monospace fonts, syntax highlighting, code blocks, diff views
-  sensory-design.md                  # soundcn, web-haptics, multi-sensory integration
-  react-patterns.md                  # Server Components, composition, state management, styling
-  design-system.md                   # 9-section DESIGN.md format, theme generation, tokens
+  depth-and-elevation.md             # Shadows, layering, z-index, hover patterns
+  motion-and-animation.md            # Duration, easing, staggering, performance (merged)
+  micro-interactions.md              # Scroll animations, View Transitions, gestures, cursors
+  navigation-patterns.md             # Breadcrumbs, sidebar, tabs, bottom bar, mega menus
+  tables-and-forms.md                # Sortable tables, inline editing, validation
+  loading-and-states.md              # Skeletons, error boundaries, empty states, offline
+  responsive-design.md               # Input method detection, container queries
+  dark-mode.md                       # Preference hierarchy, elevation, transitions
+  images-and-media.md                # Format selection, srcset, favicons, OG images
+  brand-and-identity.md              # Logo sizing, brand color, lockup variants
+  i18n-visual-patterns.md            # RTL, logical properties, text expansion, CJK
+  code-typography.md                 # Monospace fonts, syntax highlighting, code blocks
+  sensory-design.md                  # useSound hook, haptic patterns, multi-sensory
+  react-patterns.md                  # Server Components, composition, Tailwind v4
+  design-system.md                   # DESIGN.md format, theme generation, tokens
   generative-art.md                  # Philosophy-first process, p5.js, seeded randomness
   component-patterns.md              # 40+ components, state matrix, compound patterns
-  ux-psychology.md                   # Gestalt, Fitts's/Hick's/Miller's/Jakob's Law, F/Z-pattern
-  ux-writing.md                      # Error formula, button labels, empty states, terminology
+  ux-psychology.md                   # Gestalt, Fitts's/Hick's/Miller's/Jakob's Law
+  ux-writing.md                      # Error formula, button labels, terminology
+  ux-evaluation.md                   # Nielsen's 10 heuristics, JTBD, state machines
   data-visualization.md              # Chart selection matrix, dashboard layouts, Tufte
-  conversion-design.md               # Landing pages, CTAs, pricing, onboarding, notifications
-  accessibility-wcag.md              # 12 ARIA patterns, WCAG 2.2, SPA focus, accessible tables
+  conversion-design.md               # Landing pages, CTAs, pricing, onboarding
+  accessibility-wcag.md              # ARIA patterns, WCAG 2.2, focus management
   modern-css-performance.md          # Nesting, :has(), @layer, View Transitions, Tailwind v4
-  performance-optimization.md        # 45 Vercel rules across 7 priority tiers
-  style-presets.md                   # 22 visual presets with OKLCH values and font pairings
+  performance-optimization.md        # Core Web Vitals, priority tiers
+  style-presets.md                   # 22 visual presets with values and font pairings
+  visual-preview.md                  # HTML preview generation, templates, font mapping
+  figma-mcp.md                       # Figma MCP workflows, token extraction
   tools-catalog.md                   # torph, soundcn, Lucide, Facehash, better-icons
 ```
 
