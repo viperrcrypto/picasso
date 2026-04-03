@@ -21,7 +21,7 @@ The preset name: `$ARGUMENTS`
    - Each card: preset name (in its heading font), 5-swatch color palette strip, one-line mood description, a sample button in the preset's primary color and radius
    - Card backgrounds use the preset's surface color, text uses its text color
 3. Write to `/tmp/picasso-preset-browser.html`
-4. Screenshot via Bash: `npx playwright screenshot /tmp/picasso-preset-browser.html /tmp/picasso-preset-browser.png --viewport-size=1200,800`, then view with `Read`
+4. Screenshot via Bash: `npx playwright screenshot /tmp/picasso-preset-browser.html /tmp/picasso-preset-browser.png --viewport-size=1200,1600 --full-page`, then view with `Read`
 5. Present: "Here are all 22 presets. Which one catches your eye?"
 6. Wait for the user to pick
 

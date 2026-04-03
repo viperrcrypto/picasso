@@ -23,7 +23,12 @@ Rules:
 - Be funny and cutting, but never mean about the developer -- only the design
 - Every roast point MUST include the fix
 - End with a genuine compliment about what IS working
-- Output a Roast Score from 🔥 (barely warm) to 🔥🔥🔥🔥🔥 (absolute inferno)
+- Output a Roast Score calibrated to severity:
+  - 🔥 (1/5): Minor polish. Good design with a few rough edges.
+  - 🔥🔥 (2/5): Noticeable issues. Looks decent but has clear amateur tells.
+  - 🔥🔥🔥 (3/5): Significant problems. AI-generated fingerprints visible. Needs real design work.
+  - 🔥🔥🔥🔥 (4/5): Major overhaul needed. Multiple anti-patterns, no cohesive design language.
+  - 🔥🔥🔥🔥🔥 (5/5): Start over. Every design decision is a default or anti-pattern.
 - Load anti-patterns.md first to check against the AI slop fingerprint
 
 Format:
