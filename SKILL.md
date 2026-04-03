@@ -115,7 +115,6 @@ Before writing any code, read the reference files relevant to the task. Each cov
 | `references/spatial-design.md` | Layout, spacing, grids, visual hierarchy, whitespace |
 | `references/depth-and-elevation.md` | Dual shadows, layering technique, shadow scale, z-index, hover patterns |
 | `references/motion-and-animation.md` | Transitions, scroll effects, text morphing, micro-interactions |
-| `references/interaction-design.md` | Forms, focus states, loading, empty states, error handling |
 | `references/responsive-design.md` | Mobile-first, fluid, container queries, touch targets |
 | `references/sensory-design.md` | UI sound effects, haptic feedback, multi-sensory interfaces |
 | `references/react-patterns.md` | React/Next.js component architecture, hooks, performance |
@@ -131,7 +130,6 @@ Before writing any code, read the reference files relevant to the task. Each cov
 | `references/micro-interactions.md` | Scroll animations, page transitions, gestures, magnetic effects |
 | `references/i18n-visual-patterns.md` | RTL, logical properties, text expansion, CJK, number formatting |
 | `references/brand-and-identity.md` | Logo sizing, brand color usage, consistency, lockup variants |
-| `references/animation-performance.md` | Compositor-only props, will-change, layout thrashing, contain |
 | `references/code-typography.md` | Monospace fonts, syntax highlighting, code blocks, diff views |
 | `references/accessibility-wcag.md` | WCAG 2.2, ARIA patterns, keyboard nav, screen reader testing |
 | `references/conversion-design.md` | Landing pages, CTAs, pricing tables, friction reduction |
@@ -142,6 +140,9 @@ Before writing any code, read the reference files relevant to the task. Each cov
 | `references/tools-catalog.md` | Tool recommendations: torph, soundcn, Lucide, Facehash, better-icons |
 | `references/ux-psychology.md` | Gestalt principles, Fitts's Law, Hick's Law, cognitive load, heuristics |
 | `references/ux-writing.md` | Error messages, microcopy, terminology, voice and tone, CTAs |
+| `references/ux-evaluation.md` | Nielsen's 10 heuristics, Jobs to Be Done, state machines, prompt enhancement |
+| `references/visual-preview.md` | HTML preview generation, side-by-side direction comparison, font URL mapping |
+| `references/figma-mcp.md` | Figma MCP workflows, token extraction, design file analysis |
 
 ---
 

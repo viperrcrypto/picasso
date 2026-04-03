@@ -14,10 +14,9 @@ Phase 2: ASSESS
 - Take BEFORE screenshots (desktop + mobile) and VIEW them with the Read tool.
 - Run /score to establish the BEFORE score (0-100 with category breakdown).
 - Run /roast for the brutally honest assessment (must be based on screenshots, not code guessing).
-- Run /audit for full technical audit with severity-ranked findings.
-- Run /a11y (axe-core + pa11y + Lighthouse accessibility).
-- Run /perf (Lighthouse Core Web Vitals).
-- Run /lint-design (find hardcoded colors, spacing violations, font inconsistencies).
+- Run the full Phase 2 design audit from the agent definition (typography, color, spacing, layout, a11y, contrast, motion, responsive, interaction).
+- Run axe-core accessibility check if dev server is available: `npx axe-cli http://localhost:PORT --exit 2>/dev/null || true`
+- Grep for hardcoded colors, spacing violations, font inconsistencies, transition:all, outline:none.
 
 Phase 3: PLAN
 - Compile all findings into a prioritized fix list (Critical -> High -> Medium -> Low).

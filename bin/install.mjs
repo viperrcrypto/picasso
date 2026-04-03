@@ -29,8 +29,8 @@ if (command === "help" || command === "--help" || command === "-h") {
     npx picasso-skill --path DIR   Install to a custom directory
 
   What gets installed:
-    .claude/skills/picasso/        Skill (knowledge base: 32 reference files)
-    .claude/agents/picasso.md      Agent (autonomous design auditor)
+    .claude/skills/picasso/        Skill (knowledge base: 33 reference files)
+    .claude/agents/picasso.md      Agent (visual discovery + design validation)
   `);
   process.exit(0);
 }
@@ -127,7 +127,9 @@ try {
   console.log(`\n  Picasso is ready. Start designing.\n`);
 
   if (agentDir) {
-    console.log(`  Try: /godmode, /roast, /score, /mood, /evolve, /steal, /compete\n`);
+    console.log(`  15 commands: /godmode /roast /score /mood /evolve /steal /compete`);
+    console.log(`               /variants /preset /preview /figma /backlog /autorefine`);
+    console.log(`               /quick-audit /before-after\n`);
   }
 } catch (err) {
   console.error(`  Error installing: ${err.message}`);
