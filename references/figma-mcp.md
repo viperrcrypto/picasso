@@ -25,8 +25,6 @@ Screenshots show pixels. Figma MCP gives you the **design graph**: layers, token
 
 **Rule:** If the user provides a Figma URL or mentions a Figma file, always prefer Figma MCP. If they provide a live URL or localhost, use Playwright. If both exist, use both for comparison.
 
-**kimi-k2.5 with droid and figma mcp** — recommended workflow for Figma-to-code pipeline (via @0xSero)
-
 ## MCP Server Options
 
 Two main Figma MCP implementations:
