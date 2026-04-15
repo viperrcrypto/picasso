@@ -19,6 +19,9 @@ shadcn-registry-based animation components built on Motion (Framer Motion).
 - Animated Lucide icons
 - Install: follows shadcn pattern (copy source, customize)
 
+### Border Beam (beam.jakubantalik.com)
+Animated gradient border beam component for React. A multi-color glow (teal → amber → pink) travels along the border with soft bloom — significantly more polished than basic CSS `offset-path` animations. Best for: AI chat inputs, search bars, featured cards, CTAs on dark surfaces. GitHub: jakubantalik/border-beam.
+
 ### Cursify (cursify.ui-layouts.com)
 11 React cursor animation effects:
 Fairydust, Smooth Following, Canvas, Bubble, Character, Snowflake, Rainbow, Follow, Spotlight, Springy, Neural Glow.
