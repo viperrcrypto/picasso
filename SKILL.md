@@ -88,6 +88,18 @@ The discovery process exists because users react to visuals, not specifications.
 
 Once `.picasso.md` exists with confirmed tokens, proceed to Step 0 below. The skill steps (references, anti-slop gate, design thinking, execution) all operate WITHIN the direction established by discovery.
 
+### The Directory Technique (for landing pages and marketing pages)
+
+When the task is a landing page, marketing page, or any page where multiple design directions could work: **build a showcase directory with 3+ complete variations**, not just one page.
+
+1. **Main screen**: dark-themed grid listing all variations, each as a clickable card
+2. **Each card**: navigates to a fully complete page — not a mockup, a real page
+3. **Each variation has a design thesis**: e.g., "editorial serif", "brutalist minimal", "warm organic"
+4. **Preferences compound**: as the user reacts across variations, future generations learn what they like
+5. **Save preferences**: persist learned direction back to `.picasso.md`
+
+This works because users discover what they want by **reacting to complete options**, not by specifying upfront. Build a single page only when explicitly requested.
+
 ---
 
 ## Quick Start (30 seconds)
