@@ -19,6 +19,29 @@ shadcn-registry-based animation components built on Motion (Framer Motion).
 - Animated Lucide icons
 - Install: follows shadcn pattern (copy source, customize)
 
+### Border Beam (beam.jakubantalik.com)
+Animated traveling-glow border component for React. A multi-color beam orbits the perimeter of any element with soft bloom — far more polished than basic CSS `offset-path` animations. The signature effect for AI chat inputs, search bars on dark surfaces, featured cards, and primary CTAs.
+
+- **Install:** `npm install border-beam` (React 18+, MIT, 680★)
+- **Repo:** github.com/Jakubantalik/border-beam
+
+```jsx
+import { BorderBeam } from 'border-beam';
+
+<BorderBeam colorVariant="colorful" size="md" strength={0.7}>
+  <input placeholder="Ask anything..." />
+</BorderBeam>
+```
+
+**Key props:** `colorVariant` (`colorful` | `mono` | `ocean` | `sunset`), `size` (`sm` | `md` | `line`), `theme` (`dark` | `light` | `auto`), `strength` (0-1), `brightness`, `saturation`, `duration`, `active`.
+
+**How it works under the hood:** CSS conic-gradient masked to the border via `::before`/`::after` pseudo-elements, animated through CSS `@property` registered custom properties (GPU-composited, no JS animation loop). Requires `@property` support: Chrome 85+, Safari 15.4+, Firefox 128+.
+
+**When to reach for it vs. roll your own:**
+- Use Border Beam: you want the signature multi-color traveling glow with bloom
+- Roll your own: you only need a single-color rotating border (a 30-line conic-gradient + `@property` snippet is enough)
+- Avoid: any context that needs to render on Safari <15.4 or without `@property` support
+
 ### Cursify (cursify.ui-layouts.com)
 11 React cursor animation effects:
 Fairydust, Smooth Following, Canvas, Bubble, Character, Snowflake, Rainbow, Follow, Spotlight, Springy, Neural Glow.
@@ -55,6 +78,7 @@ const { trigger } = useWebHaptics();
 500x faster text measurement than DOM. Pure TypeScript, ~15KB.
 Two-function API: `prepare()` (one-time) + `layout()` (hot path, pure arithmetic).
 Universal: DOM, Canvas, SVG, WebGL, server-side. CJK, Arabic, Hebrew, Thai support.
+Demos: masonry virtualization (chenglou.me/pretext/masonr), chat bubbles (chenglou.me/pretext/bubble), responsive magazine (chenglou.me/pretext/dynami), variable font ASCII art (chenglou.me/pretext/variab)
 
 ## Design References
 
@@ -78,8 +102,8 @@ AI design tool: text prompts -> high-fidelity UI designs with production code.
 Features: AI canvas, voice interaction, DESIGN.md export, instant prototyping.
 MCP server + SDK for coding agent integration. 350 free generations/month.
 
-### Subframe (subframe.com)
-Drag-and-drop visual editor connected to coding agents via MCP.
+### Subframe / Design Canvas (subframe.com)
+Drag-and-drop visual editor for AI coding agents (Claude Code, Cursor, Codex). Iterate on UI design visually instead of via text prompts — eliminates the 'every design tweak = another prompt' problem. By Irvin Zhan.
 AI generates -> you visually refine -> clean code flows back.
 
 ### Variant (variant.com)
