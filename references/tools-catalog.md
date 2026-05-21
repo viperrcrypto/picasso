@@ -20,7 +20,27 @@ shadcn-registry-based animation components built on Motion (Framer Motion).
 - Install: follows shadcn pattern (copy source, customize)
 
 ### Border Beam (beam.jakubantalik.com)
-Animated gradient border beam component for React. A multi-color glow (teal → amber → pink) travels along the border with soft bloom — significantly more polished than basic CSS `offset-path` animations. Best for: AI chat inputs, search bars, featured cards, CTAs on dark surfaces. GitHub: jakubantalik/border-beam.
+Animated traveling-glow border component for React. A multi-color beam orbits the perimeter of any element with soft bloom — far more polished than basic CSS `offset-path` animations. The signature effect for AI chat inputs, search bars on dark surfaces, featured cards, and primary CTAs.
+
+- **Install:** `npm install border-beam` (React 18+, MIT, 680★)
+- **Repo:** github.com/Jakubantalik/border-beam
+
+```jsx
+import { BorderBeam } from 'border-beam';
+
+<BorderBeam colorVariant="colorful" size="md" strength={0.7}>
+  <input placeholder="Ask anything..." />
+</BorderBeam>
+```
+
+**Key props:** `colorVariant` (`colorful` | `mono` | `ocean` | `sunset`), `size` (`sm` | `md` | `line`), `theme` (`dark` | `light` | `auto`), `strength` (0-1), `brightness`, `saturation`, `duration`, `active`.
+
+**How it works under the hood:** CSS conic-gradient masked to the border via `::before`/`::after` pseudo-elements, animated through CSS `@property` registered custom properties (GPU-composited, no JS animation loop). Requires `@property` support: Chrome 85+, Safari 15.4+, Firefox 128+.
+
+**When to reach for it vs. roll your own:**
+- Use Border Beam: you want the signature multi-color traveling glow with bloom
+- Roll your own: you only need a single-color rotating border (a 30-line conic-gradient + `@property` snippet is enough)
+- Avoid: any context that needs to render on Safari <15.4 or without `@property` support
 
 ### Cursify (cursify.ui-layouts.com)
 11 React cursor animation effects:
